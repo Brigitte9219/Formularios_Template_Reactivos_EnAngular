@@ -26,6 +26,14 @@ export class ReactiveComponent {
     return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched
   }
 
+  get departamentoNoValido(){
+    return this.forma.get('direccion.departamento')?.invalid && this.forma.get('direccion.departamento')?.touched
+  }
+
+  get ciudadNoValido(){
+    return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched
+  }
+
   crearFormulario(){
     this.forma = this.fb.group({
     nombre:['', [Validators.required, Validators.minLength(5)]],
@@ -40,10 +48,16 @@ export class ReactiveComponent {
 
   guardar(){
     console.log(this.forma);
+
     if(this.forma.invalid){
       return Object.values(this.forma.controls).forEach(control => {
-        control.markAsTouched();
-      })
+
+        if(control instanceof FormGroup){
+          Object.values(control.controls).forEach(control => control.markAsTouched());
+        }else{
+          control.markAsTouched();
+        }
+      });
     }
   }
 
