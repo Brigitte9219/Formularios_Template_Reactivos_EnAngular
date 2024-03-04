@@ -10,10 +10,11 @@ import { NgForm } from '@angular/forms';
 export class TemplateComponent {
 
   usuario = {
-    nombre:'',
-    apellido:'',
-    correo:'',
-    pais:''
+    nombre:'brigitte',
+    apellido:'padilla',
+    correo:'brigitte@gmail.com',
+    pais:'COL',
+    genero:'F'
   }
 
   paises:any[] = [];
