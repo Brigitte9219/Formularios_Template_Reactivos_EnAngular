@@ -1,3 +1,4 @@
+import { PaisService } from './../../services/pais.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -13,6 +14,16 @@ export class TemplateComponent {
     apellido:'',
     correo:''
   }
+
+
+  constructor(private paisService:PaisService){}
+
+  ngOnInit(): void {
+    this.paisService.getPaises().subscribe(paises => {
+      console.log(paises);
+    })
+  }
+
 
   guardar(forma:NgForm){
     console.log('Submit disparado');
