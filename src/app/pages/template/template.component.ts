@@ -18,6 +18,13 @@ export class TemplateComponent {
     console.log('Submit disparado');
     console.log(forma);
     console.log(forma.value);
+
+    if(forma.invalid){
+      Object.values(forma.controls).forEach( control => {
+        control.markAsTouched();
+      });
+      return;
+    }
   }
 
 
