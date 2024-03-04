@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -35,6 +35,10 @@ export class ReactiveComponent {
     return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched
   }
 
+  get pasatiempos(){
+    return this.forma.get('pasatiempos') as FormArray;
+  }
+
   crearFormulario(){
     this.forma = this.fb.group({
     nombre:['', [Validators.required, Validators.minLength(5)]],
@@ -43,7 +47,10 @@ export class ReactiveComponent {
     direccion: this.fb.group({
       departamento:['', Validators.required],
       ciudad:['', Validators.required]
-    })
+    }),
+    pasatiempos:this.fb.array([
+      [],[],[],[],[]
+    ])
   });
   }
   cargarDataAlFormulario(){
