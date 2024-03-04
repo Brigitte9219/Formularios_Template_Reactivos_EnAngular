@@ -48,9 +48,7 @@ export class ReactiveComponent {
       departamento:['', Validators.required],
       ciudad:['', Validators.required]
     }),
-    pasatiempos:this.fb.array([
-      [],[],[],[],[]
-    ])
+    pasatiempos:this.fb.array([])
   });
   }
   cargarDataAlFormulario(){
@@ -64,6 +62,15 @@ export class ReactiveComponent {
         ciudad:'bogota'
       }
     });
+    ['comer', 'dormir'].forEach(valor => this.pasatiempos.push(this.fb.control(valor)));
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push(this.fb.control(''));
+  }
+
+  borrarPasatiempo(i:number){
+    this.pasatiempos.removeAt(i);
   }
 
   guardar(){
