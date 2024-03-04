@@ -12,6 +12,7 @@ export class ReactiveComponent {
 
   constructor(private fb:FormBuilder){
   this.crearFormulario();
+  this.cargarDataAlFormulario();
   }
 
   get nombreNoValido(){
@@ -45,6 +46,18 @@ export class ReactiveComponent {
     })
   });
   }
+  cargarDataAlFormulario(){
+    //this.forma.setValue({
+    this.forma.reset({
+      nombre:'diego',
+      apellido:'padilla',
+      correo:'diego@gmail.com',
+      direccion:{
+        departamento:'distrito capital',
+        ciudad:'bogota'
+      }
+    });
+  }
 
   guardar(){
     console.log(this.forma);
@@ -59,6 +72,7 @@ export class ReactiveComponent {
         }
       });
     }
+    this.forma.reset();
   }
 
 
